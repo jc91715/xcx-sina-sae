@@ -1,0 +1,101 @@
+<style lang="less">
+  .line{
+    border: 1px solid #ccc;
+  }
+</style>
+<template>
+  <scroll-view scroll-y="true" style="height: 600px;" bindscrolltolower="fectchPosts">
+  <view class="container">
+
+    <panel>
+      <view class="title" slot="title">文章列表</view>
+      <view wx:for-items="{{posts}}" wx:for-index="index" wx:for-item="post" wx:key="id" >
+        <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
+        <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
+        <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
+      </view>
+      </panel>
+  </view>
+    <loading hidden="{{hidden}}">
+      加载中...
+    </loading>
+  </scroll-view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Panel from '@/components/panel' // alias example
+
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '新浪'
+    }
+    components = {
+      panel: Panel,
+    }
+
+    data = {
+      posts:[],
+      hidden: false,
+      none_data:false,
+      page:1
+    }
+
+    computed = {
+
+    }
+
+    methods = {
+      handleRedictPost(post){
+        console.log(post)
+          wx.navigateTo({
+            url: `post?id=${post.id}`
+          })
+      },
+      fectchPosts(){
+
+        let self =this
+        if(self.none_data){
+          wx.showToast({
+            title: '没有更多数据',
+            icon: 'none',
+            duration: 2000
+          })
+          return
+        }
+        self.hidden = false
+        self.page = self.page+1
+        self.$apply()
+        wepy.request({
+          url: `https://${this.$parent.globalData.domain}/xcx/posts?page=${self.page}`,
+          success: function (d) {
+            self.posts=self.posts.concat(d.data.posts)
+            self.hidden = true
+            if(d.data.posts.length<10){
+              self.none_data=true
+            }
+            self.$apply()
+          }
+        })
+      }
+
+    }
+
+    events = {
+
+    }
+
+    onLoad() {
+      let self=this
+      wepy.request({
+        url: `https://${this.$parent.globalData.domain}/xcx/posts`,
+        success: function (d) {
+          self.posts = d.data.posts
+          self.hidden = true
+          self.$apply()
+        }
+      })
+    }
+  }
+</script>
