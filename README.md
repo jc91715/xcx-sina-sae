@@ -8,7 +8,7 @@
 * 已有一个小程序[链接](https://mp.weixin.qq.com/cgi-bin/registermidpage?action=index&lang=zh_CN&token=)，（有个邮箱就可以申请）
 * 注册[新浪sae](https://www.baidu.com/link?url=K0NWX_VBHhWcbo0bUKMs1VGEVAKVAWhsc-Yvo4yFrTilzn-Tq3rP931Hdg1A1_Jz&wd=&eqid=d5be52b600031955000000045c5d06c3)
 * npm 已安装。安装起来，也很方便
-## 为什么
+## 1为什么
 当我们开发一款小程序的时候，对于初级用户的使用成本还是蛮大的，既要购买服务器，又要购买数据库，域名，还要备案。
 这一整套下来，是让人很难受的，不能专心的去实现功能。有没有这样的一个平台，我只要把代码上传上去，它就可以运行，
 成本可以低点就更好了。在我的开发过程中，我发现[新浪的sae](https://www.baidu.com/link?url=K0NWX_VBHhWcbo0bUKMs1VGEVAKVAWhsc-Yvo4yFrTilzn-Tq3rP931Hdg1A1_Jz&wd=&eqid=d5be52b600031955000000045c5d06c3)挺不错的，正好可以解决这一痛点
@@ -44,9 +44,9 @@ xxx 改为你自己的域名，我的是jc91715.applinzi.com
 
 ### 打开小程序开发工具，指向dist目录，就可以运行了
 
-## api接口
+## 3 api接口
 
-提供两个api接口，一个是获得文章列表，两一个是获得文章详情。
+提供两个api接口，一个是获得文章列表，另一个是获得文章详情。
 假如你的新浪sae配置好的话，访问 
 * 文章列表https://yourdomain.com/xcx/posts 
 * 文章详情 https://yourdomain.com/xcx/show/10 10是文章id 
