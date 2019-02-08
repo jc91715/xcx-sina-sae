@@ -11,8 +11,6 @@
       <view class="title" slot="title">文章列表</view>
       <view wx:for-items="{{posts}}" wx:for-index="index" wx:for-item="post" wx:key="id" >
         <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
-        <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
-        <view class="title" @tap="handleRedictPost({{post}})" >{{index+1}}.{{post.title}}</view>
       </view>
       </panel>
   </view>
@@ -72,7 +70,7 @@
           success: function (d) {
             self.posts=self.posts.concat(d.data.posts)
             self.hidden = true
-            if(d.data.posts.length<10){
+            if(d.data.posts.length<18){
               self.none_data=true
             }
             self.$apply()
